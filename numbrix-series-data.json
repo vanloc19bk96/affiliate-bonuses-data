@@ -1,0 +1,313 @@
+{
+  "meta": {
+    "name": "Numbrix Series Architect Data",
+    "version": "1.0",
+    "lastUpdated": "2026-06",
+    "description": "Verified data for planning Numbrix puzzle book series on Amazon KDP. All printing-cost and royalty figures use Amazon KDP's official published formulas. Series structures are modeled on the volume/difficulty/grid/format patterns that dominate the live Numbrix category on Amazon (not invented themes).",
+    "sources": [
+      "Amazon KDP official Printing Cost & Royalty formula (help topic G201834340)",
+      "Amazon KDP Trim Sizes specification (help topic GVBQ3CMEQW3W2VL6)",
+      "Amazon KDP June 2025 tiered royalty: 60% at list price >= $9.99, 50% below"
+    ],
+    "disclaimer": "Printing costs and royalties are estimates based on Amazon KDP's US-marketplace black & white paperback formula. Actual page count depends on your interior layout. Always confirm the final figure in KDP's own Pricing section before publishing. This tool does not pull live sales data, BSR, or competitor ASINs."
+  },
+
+  "kdpConstants": {
+    "marketplace": "Amazon.com (US)",
+    "currency": "USD",
+    "ink": "Black & White",
+    "paper": "White or Cream (same cost)",
+    "printCostFormula": {
+      "lowPageCount": {
+        "minPages": 24,
+        "maxPages": 108,
+        "flatCost": 2.30,
+        "note": "Books from 24 to 108 pages use a flat minimum printing cost."
+      },
+      "standard": {
+        "minPages": 110,
+        "maxPages": 828,
+        "fixedCost": 1.00,
+        "perPageCost": 0.012,
+        "note": "Printing cost = 1.00 + (page count x 0.012). 828 pages is the KDP B&W paperback maximum."
+      }
+    },
+    "royaltyTiers": [
+      { "minListPrice": 9.99, "rate": 0.60, "label": "60% tier" },
+      { "minListPrice": 0.00, "rate": 0.50, "label": "50% tier" }
+    ],
+    "royaltyFormula": "royalty = (list price x rate) - printing cost. Expanded distribution uses 40% instead of 60%.",
+    "minListPriceFormula": "minimum list price = printing cost / royalty rate (so royalty never goes negative)"
+  },
+
+  "trimSizes": [
+    {
+      "id": "6x9",
+      "label": "6 x 9 in",
+      "category": "regular",
+      "kdpSupported": true,
+      "spineText": true,
+      "bestFor": "The default puzzle-book trim. Balanced page count and printing cost. Most Numbrix titles use this or 8.5x11.",
+      "puzzlesPerPageByGrid": { "6x6": 2, "7x7": 2, "8x8": 1, "9x9": 1, "10x10": 1 }
+    },
+    {
+      "id": "7x10",
+      "label": "7 x 10 in",
+      "category": "regular",
+      "kdpSupported": true,
+      "spineText": true,
+      "bestFor": "Roomier than 6x9 — common for adult puzzle books that want bigger grids without going full letter size. Several top Numbrix sellers use 7x10.",
+      "puzzlesPerPageByGrid": { "6x6": 4, "7x7": 2, "8x8": 2, "9x9": 1, "10x10": 1 }
+    },
+    {
+      "id": "8.5x11",
+      "label": "8.5 x 11 in (Letter)",
+      "category": "regular",
+      "kdpSupported": true,
+      "spineText": true,
+      "bestFor": "Largest standard trim. Fits multiple puzzles per page and reads as a workbook/activity book. Strong for high-volume editions and large grids.",
+      "puzzlesPerPageByGrid": { "6x6": 6, "7x7": 4, "8x8": 4, "9x9": 2, "10x10": 2 }
+    },
+    {
+      "id": "8.5x11-lp",
+      "label": "8.5 x 11 in (Large Print)",
+      "category": "largePrint",
+      "kdpSupported": true,
+      "spineText": true,
+      "bestFor": "Large Print edition for seniors and low-vision solvers. One puzzle per page, oversized numbers. Separate listing, premium price.",
+      "puzzlesPerPageByGrid": { "6x6": 1, "7x7": 1, "8x8": 1, "9x9": 1, "10x10": 1 }
+    }
+  ],
+
+  "gridSizes": [
+    {
+      "id": "6x6",
+      "label": "6x6",
+      "numberRange": "1 to 36",
+      "difficultyFeel": "Quickest grids. Good for beginners, warm-ups, and high-count books.",
+      "audienceFit": ["beginners", "kids", "warmup"]
+    },
+    {
+      "id": "7x7",
+      "label": "7x7",
+      "numberRange": "1 to 49",
+      "difficultyFeel": "Light step up from 6x6. Still approachable.",
+      "audienceFit": ["beginners", "casual"]
+    },
+    {
+      "id": "8x8",
+      "label": "8x8",
+      "numberRange": "1 to 64",
+      "difficultyFeel": "Mid-range grid. Comfortable for most adult solvers.",
+      "audienceFit": ["casual", "adults"]
+    },
+    {
+      "id": "9x9",
+      "label": "9x9",
+      "numberRange": "1 to 81",
+      "difficultyFeel": "The most common 'standard' Numbrix grid on Amazon. Familiar size, broad appeal.",
+      "audienceFit": ["adults", "core"]
+    },
+    {
+      "id": "10x10",
+      "label": "10x10",
+      "numberRange": "1 to 100",
+      "difficultyFeel": "Largest common grid. Reads as 'serious' / full-size brain training.",
+      "audienceFit": ["adults", "enthusiasts"]
+    }
+  ],
+
+  "difficultyLevels": [
+    { "id": "easy", "label": "Easy", "order": 1, "coverAccent": "#3FA34D", "coverAccentName": "Green", "description": "Lots of given numbers, short solving paths. Onboarding level." },
+    { "id": "medium", "label": "Medium", "order": 2, "coverAccent": "#E8A13A", "coverAccentName": "Amber", "description": "Fewer givens, more deduction. The everyday level." },
+    { "id": "hard", "label": "Hard", "order": 3, "coverAccent": "#E2622E", "coverAccentName": "Orange", "description": "Sparse givens, longer chains. For experienced solvers." },
+    { "id": "expert", "label": "Expert / Extreme", "order": 4, "coverAccent": "#C2362C", "coverAccentName": "Red", "description": "Minimal givens, maximum challenge. The top of the ladder." },
+    { "id": "mixed", "label": "Easy to Hard (Mixed)", "order": 5, "coverAccent": "#4763A8", "coverAccentName": "Blue", "description": "A spread across levels in one book. The single most common framing in the category." }
+  ],
+
+  "audiences": [
+    {
+      "id": "adults",
+      "label": "Adults",
+      "titleWords": ["for Adults"],
+      "descriptionAngle": "Screen-free logic and focus for grown-up solvers.",
+      "preferredFormats": ["regular"]
+    },
+    {
+      "id": "seniors",
+      "label": "Seniors",
+      "titleWords": ["for Seniors", "for Adults & Seniors"],
+      "descriptionAngle": "Keep your mind active and sharp. Pairs naturally with a Large Print edition.",
+      "preferredFormats": ["largePrint", "regular"]
+    },
+    {
+      "id": "beginners",
+      "label": "Beginners",
+      "titleWords": ["for Beginners"],
+      "descriptionAngle": "An easy on-ramp into Numbrix with extra given numbers and clear instructions.",
+      "preferredFormats": ["regular"]
+    },
+    {
+      "id": "everyone",
+      "label": "Teens, Adults & Seniors",
+      "titleWords": ["for Adults, Teens & Seniors"],
+      "descriptionAngle": "A book the whole household can share, from teens to grandparents.",
+      "preferredFormats": ["regular"]
+    }
+  ],
+
+  "seriesBlueprints": [
+    {
+      "id": "difficulty-ladder",
+      "name": "Difficulty Ladder",
+      "tagline": "Same grid, climbing difficulty — the classic way readers buy the next volume.",
+      "bestFor": "Building a loyal series where solvers graduate from Easy to Expert and keep coming back.",
+      "structure": "difficulty",
+      "recommendedBookCount": 4,
+      "books": [
+        { "difficulty": "easy",   "volumeLabel": "Book 1", "puzzleCount": 200 },
+        { "difficulty": "medium", "volumeLabel": "Book 2", "puzzleCount": 200 },
+        { "difficulty": "hard",   "volumeLabel": "Book 3", "puzzleCount": 200 },
+        { "difficulty": "expert", "volumeLabel": "Book 4", "puzzleCount": 200 }
+      ],
+      "expansionIdeas": [
+        "Add a 'Vol. 2' for each level once the first ladder sells.",
+        "Release a single 'Easy to Expert' mega-book that bundles all four levels.",
+        "Spin off a Large Print version of the Easy and Medium books for seniors."
+      ]
+    },
+    {
+      "id": "volume-series",
+      "name": "Numbered Volume Series",
+      "tagline": "Same level and grid, fresh puzzles each volume (Vol. 1, Vol. 2, Vol. 3...).",
+      "bestFor": "Riding a proven format. Once one volume sells, you publish the next with the same cover system and a new number.",
+      "structure": "volume",
+      "recommendedBookCount": 6,
+      "books": [
+        { "difficulty": "mixed", "volumeLabel": "Volume 1", "puzzleCount": 300 },
+        { "difficulty": "mixed", "volumeLabel": "Volume 2", "puzzleCount": 300 },
+        { "difficulty": "mixed", "volumeLabel": "Volume 3", "puzzleCount": 300 },
+        { "difficulty": "mixed", "volumeLabel": "Volume 4", "puzzleCount": 300 },
+        { "difficulty": "mixed", "volumeLabel": "Volume 5", "puzzleCount": 300 },
+        { "difficulty": "mixed", "volumeLabel": "Volume 6", "puzzleCount": 300 }
+      ],
+      "expansionIdeas": [
+        "Keep publishing — numbered series can run to dozens of volumes.",
+        "Bundle every 3 volumes into a 'Big Book' edition at a higher price.",
+        "Swap the grid size to launch a parallel series (e.g. a 10x10 line next to your 9x9 line)."
+      ]
+    },
+    {
+      "id": "grid-range",
+      "name": "Grid-Size Collection",
+      "tagline": "One difficulty, one volume per grid size (6x6, 7x7, 8x8, 9x9, 10x10).",
+      "bestFor": "Covering the whole grid spectrum so a solver can pick their preferred size — and buy more than one.",
+      "structure": "grid",
+      "recommendedBookCount": 5,
+      "books": [
+        { "difficulty": "mixed", "gridOverride": "6x6",   "volumeLabel": "6x6 Edition",   "puzzleCount": 300 },
+        { "difficulty": "mixed", "gridOverride": "7x7",   "volumeLabel": "7x7 Edition",   "puzzleCount": 300 },
+        { "difficulty": "mixed", "gridOverride": "8x8",   "volumeLabel": "8x8 Edition",   "puzzleCount": 250 },
+        { "difficulty": "mixed", "gridOverride": "9x9",   "volumeLabel": "9x9 Edition",   "puzzleCount": 250 },
+        { "difficulty": "mixed", "gridOverride": "10x10", "volumeLabel": "10x10 Edition", "puzzleCount": 200 }
+      ],
+      "expansionIdeas": [
+        "Add Easy and Hard variants of each grid edition.",
+        "Release a Large Print version of the 9x9 and 10x10 editions for seniors.",
+        "Bundle all five sizes into a single 'Complete Collection'."
+      ]
+    },
+    {
+      "id": "regular-plus-largeprint",
+      "name": "Regular + Large Print Pair",
+      "tagline": "Publish the same content twice: a regular edition and a Large Print edition for seniors.",
+      "bestFor": "Doubling revenue from one puzzle set. The Large Print edition is a separate listing at a premium price.",
+      "structure": "format",
+      "recommendedBookCount": 2,
+      "books": [
+        { "difficulty": "mixed", "formatOverride": "regular",    "volumeLabel": "Regular Edition",     "puzzleCount": 300 },
+        { "difficulty": "mixed", "formatOverride": "largePrint", "volumeLabel": "Large Print Edition", "puzzleCount": 150 }
+      ],
+      "expansionIdeas": [
+        "Repeat the pair for each difficulty level.",
+        "Market the Large Print edition specifically as a gift for seniors and grandparents.",
+        "Use a near-identical cover with a clear 'LARGE PRINT' banner so the pair reads as a set."
+      ]
+    },
+    {
+      "id": "starter-empire",
+      "name": "Starter Empire (12-Book Plan)",
+      "tagline": "A full first-year publishing plan: four difficulties across two grids, plus large-print and a mega edition.",
+      "bestFor": "Treating Numbrix like a catalog from day one — a realistic 12-book roadmap modeled on how the category's biggest publishers operate.",
+      "structure": "mixed",
+      "recommendedBookCount": 12,
+      "books": [
+        { "difficulty": "easy",   "gridOverride": "9x9",   "volumeLabel": "9x9 Easy",          "puzzleCount": 250 },
+        { "difficulty": "medium", "gridOverride": "9x9",   "volumeLabel": "9x9 Medium",        "puzzleCount": 250 },
+        { "difficulty": "hard",   "gridOverride": "9x9",   "volumeLabel": "9x9 Hard",          "puzzleCount": 250 },
+        { "difficulty": "expert", "gridOverride": "9x9",   "volumeLabel": "9x9 Expert",        "puzzleCount": 250 },
+        { "difficulty": "easy",   "gridOverride": "10x10", "volumeLabel": "10x10 Easy",        "puzzleCount": 200 },
+        { "difficulty": "medium", "gridOverride": "10x10", "volumeLabel": "10x10 Medium",      "puzzleCount": 200 },
+        { "difficulty": "hard",   "gridOverride": "10x10", "volumeLabel": "10x10 Hard",        "puzzleCount": 200 },
+        { "difficulty": "expert", "gridOverride": "10x10", "volumeLabel": "10x10 Expert",      "puzzleCount": 200 },
+        { "difficulty": "mixed",  "gridOverride": "9x9",   "formatOverride": "largePrint", "volumeLabel": "9x9 Large Print",  "puzzleCount": 150 },
+        { "difficulty": "mixed",  "gridOverride": "10x10", "formatOverride": "largePrint", "volumeLabel": "10x10 Large Print","puzzleCount": 150 },
+        { "difficulty": "mixed",  "gridOverride": "9x9",   "volumeLabel": "9x9 Easy-to-Expert Mega",   "puzzleCount": 500 },
+        { "difficulty": "mixed",  "gridOverride": "10x10", "volumeLabel": "10x10 Easy-to-Expert Mega", "puzzleCount": 500 }
+      ],
+      "expansionIdeas": [
+        "Once the 9x9 and 10x10 lines sell, repeat the whole plan for 6x6 and 8x8.",
+        "Bundle each grid's four difficulties into a 'Big Book' edition.",
+        "Build a branded series name and a consistent cover template so all 12 read as one catalog."
+      ]
+    }
+  ],
+
+  "titleFormulas": {
+    "note": "Templates only. Placeholders are filled from your inputs. No real ASINs or copyrighted titles are reproduced.",
+    "mainTitle": [
+      "Numbrix Puzzle Book {audience}: {count} {difficulty} Puzzles, {grid} Grids",
+      "Numbrix {grid} Puzzle Book {audience}: {count} Puzzles {difficultyRange}",
+      "The Big Book of Numbrix: {count} {difficulty} {grid} Puzzles {audience}",
+      "{count} Numbrix Puzzles {audience}: {difficulty} {grid} Number-Path Brain Games",
+      "Numbrix Puzzle Book {audience}: {difficultyRange} {grid} Logic Puzzles with Solutions"
+    ],
+    "subtitlePieces": {
+      "benefit": [
+        "Train your brain with screen-free number-path logic",
+        "Sharpen focus and keep your mind active",
+        "Relax, focus, and exercise your logic",
+        "Hours of number-path brain training"
+      ],
+      "spec": [
+        "{count} puzzles with full solutions",
+        "{grid} grids, numbers 1 to {maxNumber}",
+        "{difficultyRange}, complete answer key included"
+      ],
+      "audienceTag": [
+        "Perfect for adults, teens and seniors",
+        "A great gift for puzzle lovers",
+        "For beginners to experienced solvers"
+      ]
+    }
+  },
+
+  "descriptionTemplate": {
+    "note": "A reusable Amazon description skeleton. Fill the blanks; rewrite in your own voice before publishing.",
+    "hook": "Love number puzzles like Sudoku and Kakuro? Then you will be hooked on Numbrix — the addictive number-path logic puzzle.",
+    "howToPlay": "The rules are simple: fill in the missing numbers from 1 to {maxNumber} so that consecutive numbers connect horizontally or vertically. No diagonals allowed.",
+    "whatsInside": [
+      "{count} hand-checked {difficulty} puzzles on {grid} grids",
+      "Full solutions for every puzzle at the back of the book",
+      "Clear, large-enough numbers and clean printing",
+      "{trim} pages — comfortable to hold and solve"
+    ],
+    "closing": "Grab your copy today and start training your brain, one number path at a time."
+  },
+
+  "boxSetGuidance": {
+    "note": "Box sets / 'Big Book' bundles combine puzzles from several books into one larger volume at a higher price. Use this when a single volume exceeds your target page count or when you want a premium SKU.",
+    "pageCountWarning": "KDP's black & white paperback maximum is 828 pages. If a combined edition would exceed that, split it or reduce puzzles per page differently.",
+    "pricingRule": "Price a bundle below the sum of its parts but above any single volume, so the bundle reads as a deal while earning more per sale."
+  }
+}
