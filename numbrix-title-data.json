@@ -1,0 +1,183 @@
+{
+  "meta": {
+    "name": "Numbrix Title Formula Decoder Data",
+    "version": "1.0",
+    "lastUpdated": "2026-06",
+    "description": "Title and subtitle building blocks for Numbrix puzzle books on Amazon KDP. Every formula and component below is decomposed from the structure of titles that actually appear in the live Numbrix category on Amazon — they are reusable patterns with your numbers slotted in, not copied titles. All KDP rules (character limits, what gets a title rejected) come from Amazon KDP's official metadata guidelines.",
+    "sources": [
+      "Amazon KDP Metadata Guidelines for Books (help topic G201097560)",
+      "Amazon KDP Books, Titles & Editions (help topic GW7J4WEKBVU25YEC) — title + subtitle must total under 200 characters",
+      "Amazon KDP Search Keywords guidance — 7 backend fields, 50 characters each",
+      "Observed title structures across the live Amazon Numbrix category (decomposed into reusable components, not reproduced verbatim)"
+    ],
+    "disclaimer": "This tool builds title and subtitle drafts from reusable patterns and your own inputs. It does not copy any specific published book, and it does not pull live sales data, BSR, or competitor rankings. The scores are heuristic guidance based on Amazon KDP's published rules, not a guarantee of ranking. Always read your final title against KDP's metadata guidelines before publishing, and make sure it matches the text printed on your cover."
+  },
+
+  "kdpRules": {
+    "titleSubtitleMaxChars": 200,
+    "titleSubtitleNote": "Amazon KDP requires the title and subtitle COMBINED to be 200 characters or fewer, including spaces and punctuation. A colon is automatically added between them on the detail page.",
+    "backendKeywords": { "slots": 7, "maxCharsPerSlot": 50 },
+    "mustMatchCover": "Your KDP title and subtitle must match the text printed on your cover, or the book can be rejected during review.",
+    "prohibited": [
+      { "rule": "No promotional claims", "examples": ["best", "best-selling", "bestseller", "#1", "top-rated", "official", "premium"], "why": "Amazon prohibits promotional or unverifiable claims in the title/subtitle and may flag them as misleading." },
+      { "rule": "No pricing or program references", "examples": ["free", "discount", "sale", "kindle unlimited", "amazon"], "why": "References to price or Amazon programs are not allowed in metadata." },
+      { "rule": "No keyword stuffing / repetition", "examples": ["numbrix numbrix numbrix", "puzzle puzzle puzzle"], "why": "Repeating the same word to game search reads as spam and is a common rejection trigger." },
+      { "rule": "No other brands or author names", "examples": ["sudoku-brand names", "competitor author names"], "why": "Trademarked names and other authors' names are not permitted." }
+    ]
+  },
+
+  "components": {
+    "brandLead": [
+      { "id": "numbrix", "text": "Numbrix", "note": "Plain brand lead. Cleanest, most flexible." },
+      { "id": "numbrix-puzzle-book", "text": "Numbrix Puzzle Book", "note": "The most common full lead in the category." },
+      { "id": "numbrix-grid-puzzle-book", "text": "Numbrix {grid} Puzzle Book", "note": "Puts the grid size up front — good when grid is a selling point." }
+    ],
+    "largePrintPrefix": [
+      { "id": "lp-plain", "text": "Large Print", "appliesTo": "largePrint" },
+      { "id": "lp-grid", "text": "Large Print {grid}", "appliesTo": "largePrint" }
+    ],
+    "audiencePhrase": {
+      "adults":    "for Adults",
+      "seniors":   "for Adults and Seniors",
+      "beginners": "for Beginners",
+      "everyone":  "for Adults, Teens and Seniors"
+    },
+    "countPhrase": "{count} Puzzles",
+    "difficultyPhrase": {
+      "easy":   "Easy",
+      "medium": "Medium",
+      "hard":   "Hard",
+      "expert": "Expert-Level",
+      "mixed":  "Easy to Hard"
+    },
+    "gridPhrase": {
+      "inline": "{grid} Grids",
+      "on":     "on {grid} Grids",
+      "paren":  "({grid})"
+    },
+    "descriptor": [
+      "Number Path Brain Games",
+      "Number Logic Brain Games",
+      "Sequential Number Logic Puzzles",
+      "Math Logic Puzzles"
+    ],
+    "solutionTag": [
+      "with Full Solutions",
+      "with Solutions Included",
+      "with Answers"
+    ],
+    "layoutTag": {
+      "onePerPage": "One Puzzle Per Page",
+      "twoPerPage": "Two Puzzles Per Page"
+    },
+    "benefitTag": [
+      "to Train Your Brain",
+      "to Sharpen Your Mind",
+      "for Focus and Relaxation"
+    ]
+  },
+
+  "titleFormulas": [
+    {
+      "id": "classic",
+      "name": "Classic",
+      "structure": "{brandFull} {audience}: {count} Puzzles {gridParen} — {difficulty}",
+      "example": "Numbrix Puzzle Book for Adults: 500 Puzzles (9x9) — Easy to Hard",
+      "bestFor": "The default. Clear, scannable, covers the four things buyers look for: brand, audience, count, difficulty.",
+      "fields": ["brandFull", "audience", "count", "difficulty", "gridParen"]
+    },
+    {
+      "id": "grid-forward",
+      "name": "Grid-Forward",
+      "structure": "Numbrix {grid} Puzzle Book {audience}: {count} {difficulty} Number-Path Puzzles",
+      "example": "Numbrix 9x9 Puzzle Book for Adults: 500 Easy to Hard Number-Path Puzzles",
+      "bestFor": "When grid size is a deciding factor for your buyer (e.g. solvers who specifically want 10x10).",
+      "fields": ["grid", "audience", "count", "difficulty", "descriptor"]
+    },
+    {
+      "id": "benefit-led",
+      "name": "Benefit-Led",
+      "structure": "{brandFull} {audience}: {count} {difficulty} Puzzles {benefit}",
+      "example": "Numbrix Puzzle Book for Adults: 300 Medium Puzzles to Train Your Brain",
+      "bestFor": "Leans on the outcome (brain training, focus). Good for gift buyers and casual solvers.",
+      "fields": ["brandFull", "audience", "count", "difficulty", "benefit"]
+    },
+    {
+      "id": "large-print",
+      "name": "Large Print (Seniors)",
+      "structure": "{largePrintPrefix} Numbrix Puzzle Book: {count} {difficulty} Puzzles {audience}, {layout}",
+      "example": "Large Print 10x10 Numbrix Puzzle Book: 100 Easy Puzzles for Adults and Seniors, One Puzzle Per Page",
+      "bestFor": "The senior / low-vision market. Always pair with 'One Puzzle Per Page' and a large-print prefix.",
+      "fields": ["largePrintPrefix", "count", "difficulty", "audience", "layout"],
+      "requiresFormat": "largePrint"
+    },
+    {
+      "id": "descriptive",
+      "name": "Descriptive / SEO",
+      "structure": "{brandFull}: {count} {difficulty} Puzzles {gridOn}: {descriptor} {solution}",
+      "example": "Numbrix Puzzle Book: 500 Hard Puzzles on 9x9 Grids: Number Path Brain Games with Full Solutions",
+      "bestFor": "Maximum natural keyword coverage while staying readable. Uses the subtitle space fully.",
+      "fields": ["brandFull", "count", "difficulty", "gridOn", "descriptor", "solution"]
+    }
+  ],
+
+  "subtitleBuilder": {
+    "note": "If your formula's main part is short, add a subtitle to use the remaining space (up to 200 chars total). Keep it natural — no repetition, no claims.",
+    "pieces": {
+      "spec": [
+        "{count} puzzles with full solutions",
+        "{grid} grids, numbers 1 to {maxNumber}",
+        "{difficulty} level, complete answer key included"
+      ],
+      "audience": [
+        "Perfect for adults, teens and seniors",
+        "A thoughtful gift for puzzle lovers",
+        "For beginners to experienced solvers"
+      ],
+      "benefit": [
+        "Screen-free logic to keep your mind sharp",
+        "Relax, focus, and train your brain",
+        "Hours of number-path brain training"
+      ]
+    }
+  },
+
+  "scoring": {
+    "note": "Heuristic checks based on KDP's published rules and common-sense readability. Each title gets a score out of 100, with reasons. This is guidance, not a ranking guarantee.",
+    "checks": [
+      { "id": "length", "label": "Within 200-char limit", "weight": 25, "type": "hardLimit" },
+      { "id": "noClaims", "label": "No prohibited promo words", "weight": 25, "type": "prohibited" },
+      { "id": "hasCount", "label": "States the puzzle count", "weight": 12, "type": "presence", "signal": "count" },
+      { "id": "hasDifficulty", "label": "States the difficulty", "weight": 12, "type": "presence", "signal": "difficulty" },
+      { "id": "hasGrid", "label": "Mentions the grid size", "weight": 8, "type": "presence", "signal": "grid" },
+      { "id": "hasSolutions", "label": "Mentions solutions/answers", "weight": 8, "type": "presence", "signal": "solutions" },
+      { "id": "notTooLong", "label": "Readable length (under 130 chars in main title is comfortable)", "weight": 5, "type": "soft" },
+      { "id": "noRepetition", "label": "No obvious repeated keyword", "weight": 5, "type": "repetition" }
+    ]
+  },
+
+  "gridData": {
+    "6x6":  { "maxNumber": 36 },
+    "7x7":  { "maxNumber": 49 },
+    "8x8":  { "maxNumber": 64 },
+    "9x9":  { "maxNumber": 81 },
+    "10x10":{ "maxNumber": 100 },
+    "12x12":{ "maxNumber": 144 },
+    "15x15":{ "maxNumber": 225 }
+  },
+
+  "difficultyData": {
+    "easy":   { "label": "Easy" },
+    "medium": { "label": "Medium" },
+    "hard":   { "label": "Hard" },
+    "expert": { "label": "Expert" },
+    "mixed":  { "label": "Easy to Hard" }
+  },
+
+  "audienceData": {
+    "adults":    { "label": "Adults" },
+    "seniors":   { "label": "Adults & Seniors" },
+    "beginners": { "label": "Beginners" },
+    "everyone":  { "label": "Teens, Adults & Seniors" }
+  }
+}
